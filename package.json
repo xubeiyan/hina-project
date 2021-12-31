@@ -4,19 +4,25 @@
   "description": "a online sheet",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xubeiyan/hina-project.git"
   },
-  "author": "yyd",
+  "author": "xubeiyan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/xubeiyan/hina-project/issues"
   },
   "homepage": "https://github.com/xubeiyan/hina-project#readme",
   "dependencies": {
-    "koa2": "^2.0.0-alpha.7"
+    "dotenv": "^10.0.0",
+    "koa": "^2.9.0",
+    "koa-router": "^10.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
