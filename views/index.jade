@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(class="top-half")
+    h1(class="center")= title
+  div(class="bottom-half")
+    p Welcome to #{title}
