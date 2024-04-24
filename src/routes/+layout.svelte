@@ -1,8 +1,9 @@
 <script>
   import '../app.css';
+	import Header from '../components/Header.svelte';
 </script>
 
-<div class="w-screen min-h-screen">
+<div class="w-screen min-h-svh flex flex-col">
+  <Header />
   <slot />
-
 </div>
