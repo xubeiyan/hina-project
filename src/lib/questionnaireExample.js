@@ -1,5 +1,5 @@
 const examples = 
-`/* all are comments
+`/* all in DASH ASTER and ASTER DASH are comments
 # Title 1
 
 something introduce your questionnaire
