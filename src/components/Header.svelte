@@ -13,9 +13,15 @@
 	const toggleMenu = () => {
 		menuOpen = !menuOpen;
 	};
+
+	// 跳到新的页面并关闭菜单
+	const navAndCloseMenu = (url) => {
+		toggleMenu();
+		window.location.href = url;
+	};
 </script>
 
-<header class="sticky top-0 p-2 bg-slate-200 flex items-center">
+<header class="z-10 sticky top-0 p-2 bg-slate-200 flex items-center">
 	<button
 		class="border border-blue-200 p-1 rounded-md {menuButtonClass} bg-blue-200"
 		on:click={toggleMenu}
@@ -36,17 +42,29 @@
 		</button>
 		<ul class="bg-blue-200 p-2 rounded-r-lg">
 			<h2 class="text-lg text-center mb-2">功能</h2>
-			<li class="flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2">
-				<AddIcon />
-				新建问卷
+			<li>
+				<button
+					class="w-full flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2"
+					on:click={() => navAndCloseMenu('/new/')}
+				>
+					<AddIcon />
+					新建问卷
+				</button>
 			</li>
-			<li class="flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2">
-				<EditIcon />
-				编辑问卷
+			<li>
+				<button
+					class="w-full flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2"
+					on:click={() => navAndCloseMenu('/edit/')}
+				>
+					<EditIcon />
+					编辑问卷
+				</button>
 			</li>
-			<li class="flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2">
-				<SearchIcon />
-				查看问卷结果
+			<li>
+				<button class="w-full flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2">
+					<SearchIcon />
+					查看问卷结果
+				</button>
 			</li>
 		</ul>
 	</nav>

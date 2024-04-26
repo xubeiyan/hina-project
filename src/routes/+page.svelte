@@ -16,7 +16,7 @@
 				<span>New</span>
 			</button>
 		</a>
-		<a href="/edit">
+		<a href="/edit/">
 			<button class="flex items-center gap-2 p-2 rounded-md border border-neutral-300 bg-neutral-200 shadow-sm">
 				<EditIcon />
 				<span>Edit an existed one</span>
