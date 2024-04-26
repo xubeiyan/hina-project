@@ -13,10 +13,12 @@
 ## 路由
 
 * `/` 主页
-* `/form/create` 新建表单
-* `/form/{id}/edit` 编辑对应id的表单
-* `/form/{id}/fill` 查看对应id的表单
-* `/form/{id}/result` 查看对应id表单的收集结果
+* `/new` 新建表单
+* `/edit` 输入将编辑的表单
+* `/edit/code/[code]` 验证对应表单的存在，存在且可以编辑则进入编辑，不存在则报错
+* `/edit/id/[id]` 编辑某个表单
+* `/edit/publish/[id]` 发布某个表单
+* `/fill/id/[id]` 填写某个表单
 
 ## 验证设计
 
