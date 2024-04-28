@@ -2,23 +2,33 @@
 	import { examples } from '$lib/questionnaireExample';
 	let content = examples;
 
-	// 创建当前时间经过的毫秒数
-	const createDateLocal = (passedMillsecond) => {
-		let date = new Date();
-		if (passedMillsecond == undefined) {
-			passedMillsecond = 0;
-		}
-		let passedTime = new Date(date.getTime() + passedMillsecond);
-		// 去掉后面的秒数毫秒数和Z
-		return passedTime.toISOString().slice(0, -8);
+	// 创建从某个时间经过的毫秒数
+	const createDateLocal = (startTime, passedMilliSed) => {
+        let millised;
+        let timezoneOffset = new Date().getTimezoneOffset() * 60 * 1000;
+        if (startTime == undefined) {
+            millised = new Date().getTime() - timezoneOffset;
+        } else {
+            millised = new Date(startTime).getTime() - timezoneOffset ;
+        }
+
+        if (passedMilliSed == undefined) {
+            passedMilliSed = 0;
+        }
+        millised = millised + passedMilliSed;
+		return new Date(millised).toISOString().slice(0, -8);
 	};
+
 	let minTime = createDateLocal();
     // 最长时间为三周
-	let maxTime = createDateLocal(3 * 7 * 24 * 60 * 60 * 1000);
+	let maxTime = createDateLocal(undefined, 3 * 7 * 24 * 60 * 60 * 1000);
 
 	let endTime = minTime;
 
 	let stage = 'setTimeline';
+
+    // 获取报告截止时间
+    $: resultGetTimeLimit = createDateLocal(endTime, 7 * 24 * 60 * 60 * 1000);
 </script>
 
 <div class="grow p-1 relative flex flex-col items-center">
@@ -68,7 +78,7 @@
                 <div class="w-1 h-16 bg-blue-300 rounded-3xl"></div>
                 <div class="size-3 rounded-full bg-slate-700 relative" >
                     <span class="w-[10em] font-bold absolute right-[100%] top-0 translate-y-[-25%] text-right pr-2">Result Get Deadline</span>
-                    <span class="w-[10em] absolute left-[100%] top-0 translate-y-[-25%] pl-2">{endTime}</span>
+                    <span class="w-[10em] absolute left-[100%] top-0 translate-y-[-25%] pl-2">{resultGetTimeLimit}</span>
                 </div>
             </div>
 		</div>
