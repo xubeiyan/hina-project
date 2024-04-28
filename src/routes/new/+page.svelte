@@ -23,12 +23,17 @@
     // 最长时间为三周
 	let maxTime = createDateLocal(undefined, 3 * 7 * 24 * 60 * 60 * 1000);
 
-	let endTime = minTime;
+	let endTime = createDateLocal(undefined, 1 * 60 * 60 * 1000);
 
-	let stage = 'setTimeline';
+	let stage = 'editForm';
+
+    const getResultTimeLimit = (time) => {
+        if (time == '') return 'uncertain time';
+        return createDateLocal(time, 7 * 24 * 60 * 60 * 1000);
+    }
 
     // 获取报告截止时间
-    $: resultGetTimeLimit = createDateLocal(endTime, 7 * 24 * 60 * 60 * 1000);
+    $: resultGetTimeLimit = getResultTimeLimit(endTime);
 </script>
 
 <div class="grow p-1 relative flex flex-col items-center">
@@ -57,15 +62,15 @@
 					bind:value={endTime}
 					min={minTime}
 					max={maxTime}
-					class="border border-slate-700 rounded-sm"
+					class="border border-slate-700 rounded-sm p-1"
 					type="datetime-local"
 					name="end-time"
 				/>
 			</label>
-            <div class="border border-yellow-400 bg-yellow-100 rounded-md p-2">
-                <span>The time limit to get result is 7 days after the end time of questionnaire</span>
+            <div class="border border-green-400 bg-green-100 rounded-md p-2">
+                <span>the maximum end time is 3 weeks after start time</span>
             </div>
-            <div class="flex flex-col items-center translate-x-[-5%] pt-4">
+            <div class="flex flex-col items-center translate-x-[-5%] py-4">
                 <div class="size-3 rounded-full bg-slate-700 relative" >
                     <span class="w-[10em] font-bold absolute right-[100%] top-0 translate-y-[-25%] text-right pr-2">Start Time</span>
                     <span class="w-[10em] absolute left-[100%] top-0 translate-y-[-25%] pl-2">Now</span>
@@ -80,6 +85,9 @@
                     <span class="w-[10em] font-bold absolute right-[100%] top-0 translate-y-[-25%] text-right pr-2">Result Get Deadline</span>
                     <span class="w-[10em] absolute left-[100%] top-0 translate-y-[-25%] pl-2">{resultGetTimeLimit}</span>
                 </div>
+            </div>
+            <div class="border border-yellow-400 bg-yellow-100 rounded-md p-2">
+                <span>The time limit to get result is 7 days after the end time of questionnaire</span>
             </div>
 		</div>
 		<div class="h-16 mb-4 flex gap-2 justify-center items-end w-full">
