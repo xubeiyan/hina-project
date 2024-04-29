@@ -1,9 +1,9 @@
 <script>
-	import MenuIcon from '../assets/icons/menu.svelte';
-	import AddIcon from '../assets/icons/add.svelte';
-	import CloseIcon from '../assets/icons/close.svelte';
-	import EditIcon from '../assets/icons/edit.svelte';
-	import SearchIcon from '../assets/icons/search.svelte';
+	import MenuIcon from '$icons/menu.svelte';
+	import AddIcon from '$icons/add.svelte';
+	import CloseIcon from '$icons/close.svelte';
+	import EditIcon from '$icons/edit.svelte';
+	import SearchIcon from '$icons/search.svelte';
 
 	let menuOpen = false;
 	$: menuClass = menuOpen ? '' : 'translate-x-[-110%]';

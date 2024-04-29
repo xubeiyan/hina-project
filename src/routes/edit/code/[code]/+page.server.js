@@ -12,5 +12,5 @@ export function load({ params }) {
     // 检查数据库中是否存在
     // TODO
 
-    throw redirect(307, `/id/${params.code}`);
+    throw redirect(307, `/edit/id/${params.code}`);
 }
