@@ -4,6 +4,7 @@
 	import SetTimeline from './questionnaireEdit/SetTimeline.svelte';
 
 	export let content = '';
+	export let editMode = false;
 
 	let endTime = '';
 	let stage = 'editForm';
@@ -21,7 +22,7 @@
 
 <div class="grow p-1 relative flex flex-col items-center">
 	{#if stage == 'editForm'}
-		<EditForm {content} on:changeStage={changeStage} />
+		<EditForm {content} {editMode} on:changeStage={changeStage} />
 	{:else if stage == 'setTimeline'}
 		<SetTimeline {endTime} on:changeStage={changeStage} />
 	{:else if stage == 'preview'}

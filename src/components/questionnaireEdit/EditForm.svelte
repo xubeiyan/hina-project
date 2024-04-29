@@ -1,18 +1,23 @@
 <script>
-    export let content = '';
-    import { createEventDispatcher } from "svelte";
+	export let content = '';
+	import { createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
-    const toStage = (stage) => {
-        dispatch('changeStage', {
-            stage,
-            content,
-        });
-    }
+	const dispatch = createEventDispatcher();
+	const toStage = (stage) => {
+		dispatch('changeStage', {
+			stage,
+			content
+		});
+	};
+
+	export let editMode = false;
+
+	$: title = editMode ? 'Edit your questionnaire' : 'Create a new questionnaire';
 </script>
 
-<h1 class="text-center text-xl my-4">Create new questionnaire</h1>
+<h1 class="text-center text-xl my-4">{title}</h1>
 <textarea
+	id="content"
 	class="w-full md:w-[80%] grow border border-slate-400 rounded-md p-1 overflow-y-auto"
 	bind:value={content}
 />
