@@ -11,6 +11,7 @@ const htmlEscapeSeq = (stringWithSpecialChar) => {
 // *...* => <em>...</em>
 // `...` => <code>...</code>
 const lineParse = (lineText) => {
+    lineText = lineText.replace(/\*\*\*(.*?)\*\*\*/, '<strong><em>$1</em></strong>');
     lineText = lineText.replace(/\*\*(.*?)\*\*/, '<strong>$1</strong>');
     lineText = lineText.replace(/\*(.*?)\*/, '<em>$1</em>');
     lineText = lineText.replace(/`(.*?)`/, '<code class="bg-slate-100 p-1 rounded-md">$1</code>')
