@@ -1,14 +1,20 @@
 const examples = 
 `/* all in DASH ASTER and ASTER DASH are multi-line comments
+// this is a single line comment
 
 # Title 1
-something introduce your questionnaire
+// **...** means bold
+something introduce your **questionnaire**
 
 ## Title 2
-another thing you want to say
+// *...* means italic
+*another thing* you want to say
 
 ### Title 3
-// this is a single line comment
+` +
+"// `...` means inline monospace font, like code \n"
++ "`// Only god knows what the code do...`"
++ `
 // () is selection
 1. male or female?
 ( ) male
@@ -23,9 +29,14 @@ another thing you want to say
 */
 
 # 一级标题
+这个调查非常**重要**！！！
 ## 二级标题
+*其实*也没有这么***重要***
 ### 三级标题
-
+` + 
+"`// code is not your life`\n" + 
+"life is like `code` "
++ `
 1. 太阳会发光吗？
 ( ) 会的
 ( ) 不会
