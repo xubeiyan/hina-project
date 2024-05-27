@@ -1,4 +1,5 @@
 <script>
+	import LoadingIcon from '$icons/loading.svelte';
 	// 创建从某个时间经过的毫秒数
 	const createDateLocal = (startTime, passedMilliSed) => {
 		let millised;
@@ -21,7 +22,7 @@
 	let maxTime = createDateLocal(undefined, 3 * 7 * 24 * 60 * 60 * 1000);
 
 	export let endTime = createDateLocal(undefined, 1 * 60 * 60 * 1000);
-	
+
 	const getResultTimeLimit = (time) => {
 		if (time == '') return 'uncertain time';
 		return createDateLocal(time, 7 * 24 * 60 * 60 * 1000);
@@ -29,15 +30,27 @@
 	// 获取报告截止时间
 	$: resultGetTimeLimit = getResultTimeLimit(endTime);
 
-    import { createEventDispatcher } from "svelte";
+	import { createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
-    const toStage = (stage) => {
-        dispatch('changeStage', {
-            stage,
-            endTime,
-        });
-    }
+	const dispatch = createEventDispatcher();
+	const toStage = (stage) => {
+		dispatch('changeStage', {
+			stage,
+			endTime
+		});
+	};
+
+	// 保存
+	export let saving = false;
+	$: saveBtnClass = saving || endTime == '' ? 'bg-blue-700/40 cursor-not-allowed' : 'bg-blue-700';
+
+	const handleSaveAllClick = () => {
+		if (endTime == '' || saving) return;
+		dispatch('save', {
+			save: 'all',
+			endTime,
+		});
+	};
 </script>
 
 <h1 class="text-center text-xl my-4">Set timeline</h1>
@@ -76,7 +89,7 @@
 		<div class="size-3 rounded-full bg-slate-700 relative">
 			<span
 				class="w-[10em] font-bold absolute right-[100%] top-0 translate-y-[-25%] text-right pr-2"
-				>Result Get Deadline</span
+				>Get Result Deadline</span
 			>
 			<span class="w-[10em] absolute left-[100%] top-0 translate-y-[-25%] pl-2"
 				>{resultGetTimeLimit}</span
@@ -91,11 +104,16 @@
 	<button class="bg-green-200 rounded-md px-4 py-2 text-xl w-full"
 		>Publish this questionnaire</button
 	>
-	<button
-		class="bg-slate-200 rounded-md px-4 py-2 text-xl"
-		on:click={() => toStage('editForm')}
-	>
+	<button class="bg-slate-200 rounded-md px-4 py-2 text-xl" on:click={() => toStage('editForm')}>
 		Previous
 	</button>
-	<button class="bg-blue-700 rounded-md px-4 py-2 text-xl text-slate-50 grow"> Save all </button>
+	<button
+		class="{saveBtnClass} rounded-md px-4 py-2 text-xl text-slate-50 grow flex justify-center items-center gap-2"
+		on:click={handleSaveAllClick}
+	>
+		{#if saving}
+			<LoadingIcon />
+		{/if}
+		Save all
+	</button>
 </div>

@@ -6,7 +6,7 @@
 	export let content = '';
 	export let editMode = false;
 
-	let endTime = '';
+	export let endTime = '';
 	let stage = 'editForm';
 	// 切换stage
 	const changeStage = (event) => {
@@ -19,28 +19,28 @@
 		}
 	};
 	// 正在保存
-	let saving = {
-		save: false,
-		saveAndContinue: false
-	};
+	let saving = false;
 	// 修改正在保存状态
-	let changeSavingStatus = (event) => {
-		if (event.detail.operation == 'save') {
-			saving.save = true;
-			setTimeout(() => {
-				saving.save = false;
-			}, 1000);
-		} else if (event.detail.operation == 'saveAndContinue') {
-			saving.saveAndContinue = true;
-			setTimeout(() => {
-				saving.saveAndContinue = false;
-				stage = 'setTimeline';
-			}, 1000);
+	let changeSavingStatus = async (event) => {
+		if (event.detail.save == 'form') {
+			stage = 'setTimeline';
+		} else if (event.detail.save == 'all') {
+			const endTime = event.detail.endTime;
+			saving = true;
+			const res = await fetch('/save/test', {
+				method: 'POST',
+				body: JSON.stringify({ content, endTime }),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			saving = false;
+			console.log(await res.json());
 		}
 	};
 </script>
 
-<div class="grow relative flex flex-col items-center overflow-y-auto">
+<div class="grow mx-2 relative flex flex-col items-center overflow-y-auto">
 	{#if stage == 'editForm'}
 		<EditForm
 			{content}
@@ -50,7 +50,7 @@
 			on:save={changeSavingStatus}
 		/>
 	{:else if stage == 'setTimeline'}
-		<SetTimeline {endTime} on:changeStage={changeStage} />
+		<SetTimeline {endTime} {saving} on:changeStage={changeStage} on:save={changeSavingStatus} />
 	{:else if stage == 'preview'}
 		<Preview markdown={content} on:changeStage={changeStage} />
 	{/if}

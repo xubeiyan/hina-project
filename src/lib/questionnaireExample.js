@@ -46,6 +46,11 @@ something introduce your **questionnaire**
 [ ] 上午
 [ ] 下午
 [ ] 晚上
+
+3. 你认为吃{___}可以变身狼人？
+
+4. 让我们对下暗号吧。Ping！
+{___}
 `;
 
 export { examples };

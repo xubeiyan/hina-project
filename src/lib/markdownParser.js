@@ -36,7 +36,6 @@ const parse = (source) => {
             out += `<p></p>`;
             IN_RADIO = false;
             IN_CHECKBOX = false;
-            // console.log('空行');
             continue;
         };
 
@@ -46,7 +45,6 @@ const parse = (source) => {
             continue;
         } else if (IN_COMMENT || line.substring(0, 2) == '/*') {
             IN_COMMENT = true;
-            // console.log('行注释');
             continue;
         } else if (line.substring(0, 2) == '//') {
             continue;
@@ -94,6 +92,15 @@ const parse = (source) => {
             out += `<label class="flex gap-2 items-center pl-4 my-2">
             <input type="checkbox" name="${id}" class="size-8" />
             ${text}</label>`;
+            continue;
+        }
+
+        // 判断此行是否是填空
+        let fillingBoxRegex = new RegExp(/\{_{1,}\}/g);
+        if (fillingBoxRegex.test(line)) {
+            out += line.split(fillingBoxRegex)
+                .map(one => (lineParse(htmlEscapeSeq(one))))
+                .join(`<input class="border border-zinc-500 rounded-sm h-8 mx-2 px-1" />`);
             continue;
         }
 
