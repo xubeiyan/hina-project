@@ -18,11 +18,37 @@
 			endTime = event.detail.endTime;
 		}
 	};
+	// 正在保存
+	let saving = {
+		save: false,
+		saveAndContinue: false
+	};
+	// 修改正在保存状态
+	let changeSavingStatus = (event) => {
+		if (event.detail.operation == 'save') {
+			saving.save = true;
+			setTimeout(() => {
+				saving.save = false;
+			}, 1000);
+		} else if (event.detail.operation == 'saveAndContinue') {
+			saving.saveAndContinue = true;
+			setTimeout(() => {
+				saving.saveAndContinue = false;
+				stage = 'setTimeline';
+			}, 1000);
+		}
+	};
 </script>
 
-<div class="grow p-1 relative flex flex-col items-center">
+<div class="grow relative flex flex-col items-center overflow-y-auto">
 	{#if stage == 'editForm'}
-		<EditForm {content} {editMode} on:changeStage={changeStage} />
+		<EditForm
+			{content}
+			{editMode}
+			{saving}
+			on:changeStage={changeStage}
+			on:save={changeSavingStatus}
+		/>
 	{:else if stage == 'setTimeline'}
 		<SetTimeline {endTime} on:changeStage={changeStage} />
 	{:else if stage == 'preview'}

@@ -41,7 +41,7 @@
 </script>
 
 <h1 class="text-center text-xl my-4">Set timeline</h1>
-<div class="grow w-full px-8 space-y-4">
+<div class="grow w-full md:w-[50em] px-8 space-y-4">
 	<label class="flex flex-col gap-1">
 		<span>Select a end time:</span>
 		<input
@@ -87,7 +87,7 @@
 		<span>The time limit to get result is 7 days after the end time of questionnaire</span>
 	</div>
 </div>
-<div class="mb-4 flex flex-wrap gap-2 justify-center items-end w-full p-4">
+<div class="mb-4 flex flex-wrap gap-2 justify-center items-end w-full md:w-[30em] p-4">
 	<button class="bg-green-200 rounded-md px-4 py-2 text-xl w-full"
 		>Publish this questionnaire</button
 	>
