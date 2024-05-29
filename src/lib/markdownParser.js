@@ -29,6 +29,8 @@ const parse = (source) => {
     // 在多选部分
     let IN_CHECKBOX = false;
     let CHECKBOX_INDEX = 1;
+    // 填空部分
+    let FILLING_INDEX = 1;
     let out = '';
     for (let line of sourceSplit) {
         // 空行直接跳过
@@ -98,9 +100,15 @@ const parse = (source) => {
         // 判断此行是否是填空
         let fillingBoxRegex = new RegExp(/\{_{1,}\}/g);
         if (fillingBoxRegex.test(line)) {
-            out += line.split(fillingBoxRegex)
+            let inputAddLine = line.split(fillingBoxRegex)
                 .map(one => (lineParse(htmlEscapeSeq(one))))
-                .join(`<input class="border border-zinc-500 rounded-sm h-8 mx-2 px-1" />`);
+                .join(`<input name='#_#' class="border border-zinc-500 rounded-sm h-8 mx-1 px-1" />`);
+
+            out += inputAddLine.replace(/#_#/g, () => {
+                const str = `filling${FILLING_INDEX}`;
+                FILLING_INDEX += 1;
+                return str;
+            })
             continue;
         }
 

@@ -26,31 +26,12 @@ something introduce your **questionnaire**
 [ ] Skies
 [ ] Table tennis
 
+// {__} is filling box
+3. What's your favorite food?
+{__}
+
+4. If 1=5, 2=25, 3=125, 4=625, 5={__}
 */
-
-# 一级标题
-这个调查非常**重要**！！！
-## 二级标题
-*其实*也没有这么***重要***
-### 三级标题
-` + 
-"`// code is not your life`\n" + 
-"life is like `code` "
-+ `
-1. 太阳会发光吗？
-( ) 会的
-( ) 不会
-( ) 我不知道
-
-2. 月亮在哪些时段出现在天上？
-[ ] 上午
-[ ] 下午
-[ ] 晚上
-
-3. 你认为吃{___}可以变身狼人？
-
-4. 让我们对下暗号吧。Ping！
-{___}
 `;
 
 export { examples };
