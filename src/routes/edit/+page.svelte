@@ -1,7 +1,7 @@
 <script>
 	import GridEditIcon from '$icons/grid_edit.svelte';
-	import { redirect } from '@sveltejs/kit';
 
+	// 查看sheet的visit code
 	let visitCode = 'babel-cheap-drive-gloom';
 
 	$: buttonDisable = visitCode == '';
@@ -22,13 +22,13 @@
 		});
 		const resJSON = await res.json();
 		if (resJSON.code == 'EXIST') {
-			window.location = `/edit/id/${visitCode}`;
+			window.location.href = `/edit/code/${visitCode}`;
 			return;
 		}
 
 		errorMessage = {
 			show: true,
-			text: `can not find ${visitCode} in records`
+			text: `can not find questionnaire with visit code "${visitCode}" in database records`
 		};
 	};
 

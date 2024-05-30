@@ -9,9 +9,7 @@ export function load({ params }) {
         }
     }
 
-    // TODO：检查数据库中是否存在
-
-    // TODO：使用该条表单的uuid
+    // TODO：在数据库中查询该条visitCode, 使用该条表单的uuid
     let uuid = '26b09bb5-c750-4718-861d-317a725ffee9';
     throw redirect(307, `/edit/id/${uuid}`);
 }

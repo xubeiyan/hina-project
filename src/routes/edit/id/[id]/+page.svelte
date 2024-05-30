@@ -3,7 +3,7 @@
 
 	let editMode = true;
 	export let data;
-	const { content, endTime } = data;
+	const { content, endTime, id } = data;
 </script>
 
-<QuestionnaireEdit {content} {editMode} {endTime} />
+<QuestionnaireEdit {content} {editMode} {endTime} {id}/>

@@ -1,6 +1,8 @@
 import { json } from '@sveltejs/kit';
 export const POST = async ({ request }) => {
     const { visitCode } = await request.json();
+
+    // TODO: 验证数据库中是否存在
     if (visitCode == 'babel-cheap-drive-gloom') {
         return json({ code: 'EXIST', visitCode }, { status: 200 });
     }

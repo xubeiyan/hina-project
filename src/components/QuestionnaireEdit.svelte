@@ -7,6 +7,7 @@
 	export let editMode = false;
 
 	export let endTime = '';
+	export let id;
 	let stage = 'editForm';
 	// 切换stage
 	const changeStage = (event) => {
@@ -27,7 +28,7 @@
 		} else if (event.detail.save == 'all') {
 			const endTime = event.detail.endTime;
 			saving = true;
-			const res = await fetch('/save/test', {
+			const res = await fetch(`/edit/id/${id}`, {
 				method: 'POST',
 				body: JSON.stringify({ content, endTime }),
 				headers: {
