@@ -28,13 +28,26 @@
 		} else if (event.detail.save == 'all') {
 			const endTime = event.detail.endTime;
 			saving = true;
-			const res = await fetch(`/edit/id/${id}`, {
-				method: 'POST',
-				body: JSON.stringify({ content, endTime }),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
+			let res;
+			// 新建则需要分配新的
+			if (id == '') {
+				res = await fetch(`/new`, {
+					method: 'POST',
+					body: JSON.stringify({ content, endTime }),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				});
+			// 修改
+			} else {
+				res = await fetch(`/edit/id/${id}`, {
+					method: 'POST',
+					body: JSON.stringify({ content, endTime }),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				});
+			}
 			saving = false;
 			console.log(await res.json());
 		}
