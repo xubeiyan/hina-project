@@ -19,8 +19,11 @@
 * GET `/edit/code/[code]` 如果正确跳转到`/edit/id/[id]`，否则显示错误
 * GET `/edit/id/[id]` 编辑某个表单
 * POST `/edit/id/[id]` 提交表单的编辑
-* GET `/save/[id]` 保存某个表单
-* GET `/publish/[id]` 发布某个表单
+* GET `/save/[id]` 保存某个表单，显示保存结果，包括visitCode
+* GET `/publish/[id]` 发布某个表单，显示发布结果，包括visitCode
+* GET `/view` 查看表单结果
+* POST `/view/[code]` 查看code对应的表单
+* GET `/view/id/[id]` 查看id对应表单的统计结果
 * GET `/fill/id/[id]` 填写某个表单
 
 ## 验证设计
@@ -35,14 +38,15 @@
 
 #### `sheet`表设计
 
-| name        | data_type | comments                 |
-| ----------- | --------- | ------------------------ |
-| id          | uuid      | pk                       |
-| end_time    | datetime  |                          |
-| published   | int       | 0=unpublish, 1=published |
-| content     | text      |                          |
-| visit_code  | varchar   |                          |
-| create_time | datetime  |                          |
+| name                  | data_type | comments                 |
+| --------------------- | --------- | ------------------------ |
+| id                    | uuid      | pk                       |
+| end_time              | timestamp |                          |
+| get_result_limit_time | timestamp |                          |
+| published             | int       | 0=unpublish, 1=published |
+| content               | text      |                          |
+| visit_code            | varchar   |                          |
+| create_time           | timestamp |                          |
 
 #### `result`表设计
 
@@ -51,4 +55,4 @@
 | id          | uuid      | pk           |
 | sheet_id    | uuid      | fk(sheet id) |
 | result_json | text      |              |
-| create_time | datetime  |              |  
+| create_time | timestamp |              |  
