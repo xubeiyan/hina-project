@@ -1,8 +1,9 @@
 <script>
 	import GridEditIcon from '$icons/grid_edit.svelte';
+	import { dev } from '$app/environment';
 
 	// 查看sheet的visit code
-	let visitCode = 'babel-cheap-drive-gloom';
+	let visitCode = dev ? 'babel-cheap-drive-gloom' : '';
 
 	$: buttonDisable = visitCode == '';
 
@@ -12,6 +13,7 @@
 		text: ''
 	};
 
+	// 验证visitCode是否存在
 	const visitCodeValide = async () => {
 		const res = await fetch('/edit', {
 			method: 'POST',
@@ -21,8 +23,11 @@
 			}
 		});
 		const resJSON = await res.json();
+
+		// 直接返回id供跳转
 		if (resJSON.code == 'EXIST') {
-			window.location.href = `/edit/code/${visitCode}`;
+			const { id } = resJSON;
+			window.location.href = `/edit/id/${id}`;
 			return;
 		}
 

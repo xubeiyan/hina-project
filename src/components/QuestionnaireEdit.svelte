@@ -7,7 +7,7 @@
 	export let editMode = false;
 
 	export let endTime = '';
-	export let id;
+	export let id = '';
 	let stage = 'editForm';
 	// 切换stage
 	const changeStage = (event) => {
