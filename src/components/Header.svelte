@@ -41,14 +41,14 @@
 			<CloseIcon />
 		</button>
 		<ul class="bg-blue-200 p-2 rounded-r-lg">
-			<h2 class="text-lg text-center mb-2">功能</h2>
+			<h2 class="text-lg text-center mb-2">Menu</h2>
 			<li>
 				<button
 					class="w-full flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2"
 					on:click={() => navAndCloseMenu('/new/')}
 				>
 					<AddIcon />
-					新建问卷
+					Create a questionnaire
 				</button>
 			</li>
 			<li>
@@ -57,13 +57,13 @@
 					on:click={() => navAndCloseMenu('/edit/')}
 				>
 					<EditIcon />
-					编辑问卷
+					Edit one questionnaire
 				</button>
 			</li>
 			<li>
 				<button class="w-full flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2">
 					<SearchIcon />
-					查看问卷结果
+					View questionnaire result
 				</button>
 			</li>
 		</ul>
