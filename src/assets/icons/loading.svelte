@@ -1,11 +1,12 @@
 <script>
 	export let dark = false;
+	export let size = '1rem';
 	$: fillClass = dark ? 'fill-slate-800' : 'fill-slate-50';
 </script>
 
 <svg
-	height="1rem"
-	width="1rem"
+	height={size}
+	width={size}
 	class="animate-spin {fillClass}"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"

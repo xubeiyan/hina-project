@@ -1,11 +1,16 @@
 <script>
 	import GridEditIcon from '$icons/grid_edit.svelte';
+	import LoadingIcon from '$icons/loading.svelte';
+
 	import { dev } from '$app/environment';
 
 	// 查看sheet的visit code
 	let visitCode = dev ? 'babel-cheap-drive-gloom' : '';
 
-	$: buttonDisable = visitCode == '';
+	// 是否点击
+	let visitBtnClicked = false;
+
+	$: buttonDisable = visitCode == '' || visitBtnClicked;
 
 	// 显示错误
 	let errorMessage = {
@@ -15,6 +20,7 @@
 
 	// 验证visitCode是否存在
 	const visitCodeValide = async () => {
+		visitBtnClicked = true;
 		const res = await fetch('/edit', {
 			method: 'POST',
 			body: JSON.stringify({ visitCode }),
@@ -31,6 +37,7 @@
 			return;
 		}
 
+		visitBtnClicked = false;
 		errorMessage = {
 			show: true,
 			text: `can not find questionnaire with visit code "${visitCode}" in database records`
@@ -60,7 +67,11 @@
 		disabled={buttonDisable}
 		on:click={visitCodeValide}
 	>
-		<GridEditIcon />
+		{#if visitBtnClicked}
+			<LoadingIcon dark={true} size="2rem"/>
+		{:else}
+			<GridEditIcon />
+		{/if}
 		Edit it
 	</button>
 	{#if errorMessage.show}

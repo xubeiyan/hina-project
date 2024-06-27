@@ -37,14 +37,14 @@
     bg-slate-700/60 py-10 pr-10
     overflow-hidden transition-transform duration-500"
 	>
-		<button class="absolute right-2 top-2 bg-neutral-100 rounded-md" on:click={toggleMenu}>
+		<button class="absolute right-2 top-2 bg-neutral-200 hover:bg-zinc-100 rounded-md" on:click={toggleMenu}>
 			<CloseIcon />
 		</button>
 		<ul class="bg-blue-200 p-2 rounded-r-lg">
 			<h2 class="text-lg text-center mb-2">Menu</h2>
 			<li>
 				<button
-					class="w-full flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2"
+					class="w-full flex items-center gap-2 bg-blue-100 hover:bg-sky-100 rounded-md p-2 mb-2"
 					on:click={() => navAndCloseMenu('/new/')}
 				>
 					<AddIcon />
@@ -53,7 +53,7 @@
 			</li>
 			<li>
 				<button
-					class="w-full flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2"
+					class="w-full flex items-center gap-2 bg-blue-100 hover:bg-sky-100 rounded-md p-2 mb-2"
 					on:click={() => navAndCloseMenu('/edit/')}
 				>
 					<EditIcon />
@@ -61,7 +61,7 @@
 				</button>
 			</li>
 			<li>
-				<button class="w-full flex items-center gap-2 bg-blue-100 rounded-md p-2 mb-2">
+				<button class="w-full flex items-center gap-2 bg-blue-100 hover:bg-sky-100 rounded-md p-2 mb-2">
 					<SearchIcon />
 					View questionnaire result
 				</button>

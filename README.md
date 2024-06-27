@@ -15,16 +15,16 @@
 * GET `/` 主页
 * GET `/new` 新建表单
 * GET `/edit` 输入将编辑的表单
-* POST `/edit` 验证对应表单的存在，存在且可以编辑则进入编辑，不存在则报错
-* GET `/edit/code/[code]` 如果正确跳转到`/edit/id/[id]`，否则显示错误
+* POST `/edit` 验证对应表单的存在，如果正确跳转到`/edit/id/[id]`，不存在则报错
 * GET `/edit/id/[id]` 编辑某个表单
+* GET `/edit/invalidId` 显示错误的ID
 * POST `/edit/id/[id]` 提交表单的编辑
 * GET `/save/[id]` 保存某个表单，显示保存结果，包括visitCode
 * GET `/publish/[id]` 发布某个表单，显示发布结果，包括visitCode
 * GET `/view` 查看表单结果
-* POST `/view/[code]` 查看code对应的表单
-* GET `/view/id/[id]` 查看id对应表单的统计结果
-* GET `/fill/id/[id]` 填写某个表单
+* POST `/view` 根据表单visitCode显示该表单是否可查看结果，正确跳转到`/view/[id]`
+* GET `/view/[id]` 查看id对应表单的统计结果
+* GET `/fill/[id]` 填写某个表单
 
 ## 验证设计
 
